@@ -297,7 +297,32 @@
             }
         }
     </style>
-</head>
+<style>
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px; /* увеличена в 5 раз */
+  background: #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 48px;
+  width: 12px;
+  background: #2e4c40;
+  border-radius: 2px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  height: 48px;
+  width: 12px;
+  background: #2e4c40;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+</style></head>
 <body>
 <div class="container">
 <h1>3D Art Calculator</h1>
@@ -335,20 +360,19 @@
 </div>
 </div>
 <div class="form-group">
-<label for="characters">Main Characters Quantity</label>
-<div class="input-with-help">
-<input id="characters" min="0" type="number" value="0"/>
-<div class="help-btn tooltip" id="btn_help_characters">?
-                    <span class="tooltiptext">Enter the number of Main Player Characters. These are the controllable heroes or protagonists in your game that usually have the highest level of detail.</span>
-</div>
-</div>
-</div>
-<div class="form-group">
 <label for="levels">Levels/Maps Quantity</label>
 <div class="input-with-help">
 <input id="levels" min="0" type="number" value="0"/>
 <div class="help-btn tooltip" id="btn_help_level_number">?
                     <span class="tooltiptext">Enter the total number of levels or maps in your game. Each level is considered a separate playable area or mission.</span>
+</div>
+</div>
+</div><div class="form-group">
+<label for="characters">Main Characters Quantity</label>
+<div class="input-with-help">
+<input id="characters" min="0" type="number" value="0"/>
+<div class="help-btn tooltip" id="btn_help_characters">?
+                    <span class="tooltiptext">Enter the number of Main Player Characters. These are the controllable heroes or protagonists in your game that usually have the highest level of detail.</span>
 </div>
 </div>
 </div>
@@ -391,12 +415,12 @@
 <div class="form-group">
 <label for="hour-rate">Hourly Rate ($)</label>
 <div class="input-with-help">
-<input id="hour-rate" min="0" step="0.01" type="number" value="30"/>
+<input id="hour-rate" max="100" min="1" oninput="document.getElementById('hour-display').innerText = this.value" type="range" value="35"/>
 <div class="help-btn tooltip" id="btn_help_hour_rate">?
                     <span class="tooltiptext">Set the hourly rate in USD for your 3D team. Examples: $5–10/hr = low-cost freelancers, $25–35/hr = standard Upwork mid-tier, $50–70/hr = senior freelancers or studios.</span>
 </div>
 </div>
-</div>
+<div>Hourly Rate: $<span id="hour-display">35</span></div></div>
 <button class="btn btn-primary" id="calculate-btn">Calculate</button>
 <div class="results" id="results" style="display: none;">
 <div class="result-item">
